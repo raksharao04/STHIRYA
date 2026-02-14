@@ -1,2 +1,2 @@
-# New-repository
+Project STHIRYA
 interior-website
