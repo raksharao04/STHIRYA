@@ -6,6 +6,11 @@
 <title>Elegant Spaces | Interior Design Studio</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
+:root {
+  --accent: #c19a6b;
+  --muted: #6b6b6b;
+  --bg-card: #ffffff;
+}
 * {
   margin: 0;
   padding: 0;
@@ -16,53 +21,11 @@
 body {
   line-height: 1.6;
   color: #333;
-  margin-top: 200px;
-}
-
-nav {
-  background: white;
-  padding: 20px 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-  box-sizing: border-box;
-  gap: 20px;
-}
-
-.nav-logo {
-  width: 160px;
-  height: auto;
-  object-fit: contain;
-  mix-blend-mode: multiply;
-  filter: brightness(1.1) contrast(1.2);
-}
-
-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 60px;
-  margin: 0;
-  justify-content: center;
-}
-
-nav a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-nav a:hover {
-  color: #c19a6b;
+  background: #fbfbfb;
 }
 
 header {
+  position: relative;
   background: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6') no-repeat center center/cover;
   height: 90vh;
   color: white;
@@ -71,38 +34,48 @@ header {
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 0 20px;
 }
 
-header h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
+/* subtle dark overlay for better contrast */
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.45));
+  z-index: 0;
 }
+header > * { position: relative; z-index: 1; }
 
 .header-sthirya-logo {
-  width: 280px;
+  width: 380px;
+  max-width: 80vw;
   height: auto;
   object-fit: contain;
   margin-bottom: 20px;
-  mix-blend-mode: multiply;
-  filter: brightness(1.1) contrast(1.2);
+  transform: translateY(-220px);
 }
 
 header p {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   margin-bottom: 20px;
+  color: rgba(255,255,255,0.95);
 }
 
 .btn {
-  background: #c19a6b;
+  background: var(--accent);
   color: white;
-  padding: 12px 25px;
+  padding: 12px 28px;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  box-shadow: 0 8px 28px rgba(193,154,107,0.18);
 }
 
 section {
-  padding: 60px 20px;
+  padding: 80px 20px;
   text-align: center;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .services {
@@ -113,58 +86,47 @@ section {
 }
 
 .card {
-  background: #f4f4f4;
-  padding: 20px;
-  border-radius: 10px;
+  background: var(--bg-card);
+  padding: 26px;
+  border-radius: 12px;
   width: 280px;
+  box-shadow: 0 10px 30px rgba(16,16,16,0.06);
 }
 
 .portfolio img {
   width: 300px;
   border-radius: 10px;
   margin: 10px;
+  transition: transform .22s ease, filter .22s ease;
 }
+.portfolio img:hover { transform: translateY(-6px); filter: brightness(1.04); }
 
 footer {
-  background: #222;
-  color: white;
-  padding: 20px;
+  background: #0f1720;
+  color: #dfe6ea;
+  padding: 28px 20px;
   text-align: center;
+  margin-top: 40px;
 }
 
 @media(max-width: 768px){
-  header h1 {
-    font-size: 2rem;
-  }
+  .header-sthirya-logo { width: 220px; transform: translateY(-90px); }
+  section { padding: 56px 16px; }
 }
 </style>
-</head>
-
-<body>
-
-<nav>
-  <img src="./images/Sthirya logo.jpg" alt="Sthirya Logo" class="nav-logo">
-  <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
 
 <header>
-  <img src="./images/Sthirya logo.jpg" alt="Sthirya Logo" class="header-sthirya-logo">
+  <img src="./images/STHIRYA-LOGO.png" alt="STHIRYA Logo" class="header-sthirya-logo">
   <p>Transforming houses into dream homes</p>
   <a href="#contact" class="btn">Book Consultation</a>
 </header>
 
-<section>
+<section id="about">
   <h2>About Us</h2>
   <p>We are a premium interior design studio creating modern, elegant, and functional spaces tailored to your lifestyle.</p>
 </section>
 
-<section>
+<section id="services">
   <h2>Our Services</h2>
   <div class="services">
     <div class="card">
@@ -180,9 +142,10 @@ footer {
       <p>Transforming existing spaces into modern masterpieces.</p>
     </div>
   </div>
+  </div>
 </section>
 
-<section class="portfolio">
+<section class="portfolio" id="projects">
   <h2>Our Work</h2>
   <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Interior 1">
   <img src="https://images.unsplash.com/photo-1615873968403-89e068629265" alt="Interior 2">
